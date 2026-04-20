@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Environment Variables
+.env
+.env.local
+
+# FastF1 Cache - Ignore all cache files
+cache/
+cache/fastf1/
+*.sqlite
+*.sqlite3
+fastf1_http_cache.sqlite
+
+# ChromaDB - Ignore all database files
+data/
+data/chroma/
+chroma/
+chroma_db/
+*.sqlite3
+chroma.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
