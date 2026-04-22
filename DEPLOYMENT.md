@@ -1,6 +1,6 @@
 # Deployment Guide (FREE)
 
-Deploy PitWall AI completely FREE using Vercel and Render.
+Deploy PitWall AI completely FREE using Netlify and Render.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ Deploy PitWall AI completely FREE using Vercel and Render.
 
 3. **Configure**:
    - Name: `pitwallai-backend`
-   - Root Directory: `backend`
+   - Root Directory: Leave empty (uses netlify.toml)
    - Environment: `Python 3`
    - Region: `Oregon (US West)` or any free region
    - Branch: `main`
@@ -40,41 +40,41 @@ Deploy PitWall AI completely FREE using Vercel and Render.
 
 6. **Copy URL**: Once deployed, note your backend URL (e.g., `https://pitwallai-backend.onrender.com`)
 
-## Step 2: Deploy Frontend to Vercel (FREE)
+## Step 2: Deploy Frontend to Netlify (FREE)
 
-1. **Sign up**: Go to https://vercel.com and sign up with GitHub
+1. **Sign up**: Go to https://netlify.com and sign up with GitHub
 
 2. **Import Project**:
-   - Click "Add New" → "Project"
-   - Import `PItWall-AI` repository
-   - Root Directory: `frontend`
+   - Click "Add new site" → "Import an existing project"
+   - Choose GitHub and select `PItWall-AI` repository
 
-3. **Configure**:
-   - Framework: Next.js (auto-detected)
-   - Build Command: `npm run build`
-   - Output Directory: `.next`
+3. **Configure** (auto-detected from netlify.toml):
+   - Base directory: `frontend`
+   - Build command: `npm run build`
+   - Publish directory: `.next`
+   - Node version: 20
 
 4. **Environment Variable**:
    ```
    NEXT_PUBLIC_API_URL=https://your-backend-url.onrender.com
    ```
 
-5. **Deploy**: Click "Deploy"
+5. **Deploy**: Click "Deploy site"
 
-6. **Done!**: Your app is live at `https://your-app.vercel.app`
+6. **Done!**: Your app is live at `https://your-app.netlify.app`
 
 ## Step 3: Update Backend CORS
 
 1. Go back to Render dashboard
 2. Add environment variable:
    ```
-   CORS_ORIGINS=https://your-app.vercel.app
+   CORS_ORIGINS=https://your-app.netlify.app
    ```
 3. Redeploy backend
 
 ## Testing
 
-Visit your Vercel URL and test:
+Visit your Netlify URL and test:
 - Strategy Advisor
 - Knowledge Base search
 - AI Commentary generation
@@ -87,26 +87,28 @@ Visit your Vercel URL and test:
 - ✅ 750 hours/month free (enough for projects)
 - ✅ Automatic HTTPS
 
-### Vercel Free Tier
-- ✅ Unlimited deployments
+### Netlify Free Tier
+- ✅ 300 build minutes/month
 - ✅ 100GB bandwidth/month
 - ✅ Automatic HTTPS
 - ✅ Custom domains
+- ✅ Instant rollbacks
 
 ## Troubleshooting
 
 **Backend 500 errors**:
 - Check Render logs
 - Verify GEMINI_API_KEY is set
-- Ensure CORS_ORIGINS includes your Vercel URL
+- Ensure CORS_ORIGINS includes your Netlify URL
 
 **Slow first load**:
 - Normal for Render free tier (service wakes from sleep)
 - Subsequent requests are fast
 
 **Build fails**:
-- Check Python version in logs
-- Verify all dependencies in requirements.txt
+- Check Node version (should be 20+)
+- Verify base directory is set to `frontend`
+- Check Netlify build logs
 
 ## Cost
 

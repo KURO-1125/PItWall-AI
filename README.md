@@ -38,7 +38,7 @@ Open http://localhost:3000
 ## Deployment (FREE)
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for deploying to:
-- **Frontend**: Vercel (free)
+- **Frontend**: Netlify (free)
 - **Backend**: Render (free tier)
 
 ## License
