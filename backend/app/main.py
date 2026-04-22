@@ -76,7 +76,16 @@ async def startup_event():
 
 @app.get("/health")
 async def health_check():
-    """Check service health including LLM and Knowledge Base availability."""
+    """Quick health check for deployment platforms."""
+    return {
+        "status": "ok",
+        "version": "1.0.0",
+    }
+
+
+@app.get("/health/detailed")
+async def detailed_health_check():
+    """Detailed health check including LLM and Knowledge Base availability."""
     llm_status = await llm_service.health_check()
     kb_stats = knowledge_base_service.get_stats()
     
