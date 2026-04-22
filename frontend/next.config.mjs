@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Empty turbopack config to silence the warning
-  turbopack: {},
+  // Disable Turbopack for build - use webpack instead
+  experimental: {
+    turbo: undefined
+  }
 };
 
 export default nextConfig;
