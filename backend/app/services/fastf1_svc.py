@@ -1,7 +1,7 @@
 """
 PitWall AI — FastF1 Service
 Wraps the FastF1 library for deep historical telemetry data (2018-2025).
-Used as a complement to OpenF1 for richer analysis.
+Primary data source for race analysis and strategy recommendations.
 """
 import fastf1
 import pandas as pd

@@ -12,7 +12,8 @@ from app.models.schemas import (
     StrategyOverviewResponse,
 )
 from app.engines.strategy import strategy_engine
-from app.services.openf1 import openf1_service
+# OpenF1 service not used - using FastF1 exclusively
+# from app.services.openf1 import openf1_service
 
 router = APIRouter(prefix="/api/strategy", tags=["strategy"])
 
@@ -38,7 +39,7 @@ async def what_if(request: WhatIfRequest):
     import logging
     logger = logging.getLogger(__name__)
     
-    # Use FastF1 data instead of OpenF1 (which requires auth)
+    # Using FastF1 exclusively for all race data
     from app.services.fastf1_svc import fastf1_service
     
     # Parse session_key to get year and round
@@ -102,7 +103,8 @@ async def what_if(request: WhatIfRequest):
     )
 
 
-# NOTE: Overview endpoint disabled - was using OpenF1 API
+# NOTE: Overview endpoint not implemented yet
+# Can be implemented with FastF1 data if needed
 # @router.get("/{session_key}/overview", response_model=StrategyOverviewResponse)
 # async def strategy_overview(session_key: int):
 #     """Get strategy overview with tyre degradation, pit windows, and gap analysis."""

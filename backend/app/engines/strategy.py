@@ -297,7 +297,7 @@ class StrategyEngine:
         """
         Answer a strategy question using race data + LLM reasoning.
         """
-        # Use FastF1 data instead of OpenF1 to avoid rate limits
+        # Using FastF1 for all race data
         from app.services.fastf1_svc import fastf1_service
         
         try:
@@ -378,8 +378,8 @@ Provide your strategic analysis based on the data above."""
 
     # ── Strategy Overview ──────────────────────────────────
 
-    # NOTE: get_overview method disabled - was using OpenF1 API
-    # Can be re-implemented with FastF1 if needed
+    # NOTE: Overview endpoint not implemented yet
+    # Can be implemented with FastF1 data if needed
 
 
 # Singleton
