@@ -63,8 +63,10 @@ async def root():
 @app.on_event("startup")
 async def startup_event():
     """Initialize services on startup."""
-    # Ingest PDFs if knowledge base is empty
-    knowledge_base_service.ingest_pdfs(force_reingest=False)
+    # Skip PDF ingestion on startup for faster deployment
+    # PDFs will be ingested on first knowledge base query
+    logger.info("Server started successfully")
+    pass
 
 
 @app.get("/health")
