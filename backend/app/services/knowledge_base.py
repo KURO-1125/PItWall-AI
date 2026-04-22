@@ -5,10 +5,6 @@ RAG system for F1 regulations and rules (2023-2026)
 import os
 import logging
 from typing import List, Dict, Optional
-import chromadb
-from chromadb.config import Settings
-from pypdf import PdfReader
-from sentence_transformers import SentenceTransformer
 
 logger = logging.getLogger(__name__)
 
@@ -19,22 +15,53 @@ class KnowledgeBaseService:
     def __init__(self, pdf_dir: str = "../PDF", db_dir: str = "./data/chroma"):
         self.pdf_dir = pdf_dir
         self.db_dir = db_dir
+        self._client = None
+        self._collection = None
+        self._initialized = False
         
-        # Initialize ChromaDB
-        os.makedirs(db_dir, exist_ok=True)
-        self.client = chromadb.PersistentClient(path=db_dir)
-        
-        # Get or create collection
-        self.collection = self.client.get_or_create_collection(
-            name="f1_regulations",
-            metadata={"description": "F1 Regulations 2023-2026"}
-        )
-        
-        logger.info(f"Knowledge Base initialized with {self.collection.count()} documents")
+        logger.info("Knowledge Base service created (lazy initialization)")
+    
+    def _ensure_initialized(self):
+        """Lazy initialization of ChromaDB and embeddings."""
+        if self._initialized:
+            return
+            
+        try:
+            import chromadb
+            from chromadb.config import Settings
+            
+            # Initialize ChromaDB
+            os.makedirs(self.db_dir, exist_ok=True)
+            self._client = chromadb.PersistentClient(path=self.db_dir)
+            
+            # Get or create collection
+            self._collection = self._client.get_or_create_collection(
+                name="f1_regulations",
+                metadata={"description": "F1 Regulations 2023-2026"}
+            )
+            
+            self._initialized = True
+            logger.info(f"Knowledge Base initialized with {self._collection.count()} documents")
+        except Exception as e:
+            logger.error(f"Error initializing Knowledge Base: {e}")
+            self._initialized = False
+    
+    @property
+    def collection(self):
+        """Get collection with lazy initialization."""
+        self._ensure_initialized()
+        return self._collection
+    
+    @property
+    def client(self):
+        """Get client with lazy initialization."""
+        self._ensure_initialized()
+        return self._client
     
     def extract_text_from_pdf(self, pdf_path: str) -> str:
         """Extract text from a PDF file."""
         try:
+            from pypdf import PdfReader
             reader = PdfReader(pdf_path)
             text = ""
             for page in reader.pages:
