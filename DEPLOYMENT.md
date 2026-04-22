@@ -20,21 +20,25 @@ Deploy PitWall AI completely FREE using Vercel and Render.
    - Name: `pitwallai-backend`
    - Root Directory: `backend`
    - Environment: `Python 3`
+   - Region: `Oregon (US West)` or any free region
+   - Branch: `main`
    - Build Command: `pip install -r requirements.txt`
    - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
    - Instance Type: **Free**
 
-4. **Environment Variables**:
+4. **Environment Variables** (Click "Advanced" → "Add Environment Variable"):
    ```
    GEMINI_API_KEY=your_gemini_api_key_here
    FASTF1_CACHE_DIR=./cache/fastf1
    CHROMA_PERSIST_DIR=./chroma_db
-   PYTHON_VERSION=3.14.0
+   PYTHON_VERSION=3.11.0
    ```
 
 5. **Deploy**: Click "Create Web Service"
+   - Wait 5-10 minutes for first deployment
+   - Render will install dependencies and start the server
 
-6. **Copy URL**: Note your backend URL (e.g., `https://pitwallai-backend.onrender.com`)
+6. **Copy URL**: Once deployed, note your backend URL (e.g., `https://pitwallai-backend.onrender.com`)
 
 ## Step 2: Deploy Frontend to Vercel (FREE)
 
