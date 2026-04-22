@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { askStrategy } from "../../app/lib/api";
-import { SUGGESTED_QUESTIONS } from "../../app/lib/constants";
+import { askStrategy } from "../../lib/api";
+import { SUGGESTED_QUESTIONS } from "../../lib/constants";
 
 export default function ChatPanel({ sessionKey, raceState }) {
     const [messages, setMessages] = useState([]);

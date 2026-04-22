@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { fadeInUp, staggerContainer, scaleIn, buttonHover } from "../lib/animations";
-import { getRaceState, askStrategy, whatIfStrategy } from "../lib/api";
+import { fadeInUp, staggerContainer, scaleIn, buttonHover } from "../../lib/animations";
+import { getRaceState, askStrategy, whatIfStrategy } from "../../lib/api";
 import RaceSelector from "../../components/strategy/RaceSelector";
 import ChatPanel from "../../components/strategy/ChatPanel";
 import StrategyChart from "../../components/strategy/StrategyChart";

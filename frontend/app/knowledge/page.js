@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "../lib/animations";
-import { askKnowledge, searchKnowledge, getKnowledgeStats, getAvailableYears, getRegulationTypes } from "../lib/api";
+import { fadeInUp, staggerContainer } from "../../lib/animations";
+import { askKnowledge, searchKnowledge, getKnowledgeStats, getAvailableYears, getRegulationTypes } from "../../lib/api";
 
 export default function KnowledgePage() {
     const [question, setQuestion] = useState("");

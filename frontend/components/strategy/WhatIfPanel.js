@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { whatIfStrategy } from "../../app/lib/api";
-import { COMPOUNDS, TYRE_COLORS } from "../../app/lib/constants";
+import { whatIfStrategy } from "../../lib/api";
+import { COMPOUNDS, TYRE_COLORS } from "../../lib/constants";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function WhatIfPanel({ sessionKey, drivers }) {

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getHealth } from "./lib/api";
+import { getHealth } from "../lib/api";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();

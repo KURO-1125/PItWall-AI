@@ -11,7 +11,7 @@ import {
   scaleIn,
   buttonHover,
   buttonTap,
-} from "./lib/animations";
+} from "../lib/animations";
 
 const drivers2026 = [
   {

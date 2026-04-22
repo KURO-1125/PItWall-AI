@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TYRE_COLORS } from "../../app/lib/constants";
+import { TYRE_COLORS } from "../../lib/constants";
 
 export default function RaceStateCard({ session, data, loading }) {
     if (loading || !data) {

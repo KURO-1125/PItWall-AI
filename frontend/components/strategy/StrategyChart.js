@@ -1,7 +1,7 @@
 "use client";
 
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { TYRE_COLORS } from '../../app/lib/constants';
+import { TYRE_COLORS } from '../../lib/constants';
 
 export default function StrategyChart({ sessionKey, data }) {
     // If no data, show a placeholder or mock state

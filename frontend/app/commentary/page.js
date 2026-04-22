@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "../lib/animations";
+import { fadeInUp, staggerContainer } from "../../lib/animations";
 import { 
     getRaces, 
     getCommentaryPersonalities, 
     generateCommentary, 
     generateHighlightReel 
-} from "../lib/api";
+} from "../../lib/api";
 
 export default function CommentaryPage() {
     const [sessions, setSessions] = useState([]);

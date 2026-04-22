@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { getRaces } from "../../app/lib/api";
+import { getRaces } from "../../lib/api";
 
 export default function RaceSelector({ onSelect }) {
     const [sessions, setSessions] = useState([]);
