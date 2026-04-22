@@ -23,7 +23,7 @@ Deploy PitWall AI completely FREE using Vercel and Render.
    - Region: `Oregon (US West)` or any free region
    - Branch: `main`
    - Build Command: `pip install -r requirements.txt`
-   - Start Command: `bash start.sh`
+   - Start Command: `python run.py`
    - Instance Type: **Free**
 
 4. **Environment Variables** (Click "Advanced" → "Add Environment Variable"):

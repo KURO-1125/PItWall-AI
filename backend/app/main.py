@@ -63,10 +63,15 @@ async def root():
 @app.on_event("startup")
 async def startup_event():
     """Initialize services on startup."""
-    # Skip PDF ingestion on startup for faster deployment
-    # PDFs will be ingested on first knowledge base query
-    logger.info("Server started successfully")
-    pass
+    try:
+        # Skip PDF ingestion on startup for faster deployment
+        # PDFs will be ingested on first knowledge base query
+        logger.info("Server started successfully")
+        logger.info(f"CORS Origins: {settings.CORS_ORIGINS}")
+        logger.info(f"Gemini API Key configured: {'Yes' if settings.GEMINI_API_KEY else 'No'}")
+    except Exception as e:
+        logger.error(f"Startup error: {e}")
+        # Don't crash on startup errors
 
 
 @app.get("/health")
