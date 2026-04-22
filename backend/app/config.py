@@ -17,9 +17,10 @@ class Settings:
 
     # Data
     FASTF1_CACHE_DIR: str = os.getenv("FASTF1_CACHE_DIR", "./cache/fastf1")
+    CHROMA_PERSIST_DIR: str = os.getenv("CHROMA_PERSIST_DIR", "./chroma_db")
 
     # Server
-    CORS_ORIGINS: list = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+    CORS_ORIGINS: list = os.getenv("CORS_ORIGINS", "http://localhost:3000,https://*.vercel.app").split(",")
 
 
 settings = Settings()
