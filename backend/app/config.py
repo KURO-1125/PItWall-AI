@@ -19,8 +19,8 @@ class Settings:
     FASTF1_CACHE_DIR: str = os.getenv("FASTF1_CACHE_DIR", "./cache/fastf1")
     CHROMA_PERSIST_DIR: str = os.getenv("CHROMA_PERSIST_DIR", "./chroma_db")
 
-    # Server - Allow all origins for now (will be restricted in production)
-    CORS_ORIGINS: list = ["*"]  # Allow all origins for deployment
+    # Server - CORS configuration
+    CORS_ORIGINS: list = os.getenv("CORS_ORIGINS", "*").split(",") if os.getenv("CORS_ORIGINS") else ["*"]
 
 
 settings = Settings()
