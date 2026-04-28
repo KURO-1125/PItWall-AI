@@ -5,6 +5,7 @@ RAG system for F1 regulations and rules (2023-2026)
 import os
 import logging
 from typing import List, Dict, Optional
+from app.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -12,14 +13,14 @@ logger = logging.getLogger(__name__)
 class KnowledgeBaseService:
     """RAG-based knowledge base for F1 regulations."""
     
-    def __init__(self, pdf_dir: str = "../PDF", db_dir: str = "./data/chroma"):
+    def __init__(self, pdf_dir: str = "../PDF", db_dir: str = None):
         self.pdf_dir = pdf_dir
-        self.db_dir = db_dir
+        self.db_dir = db_dir or settings.CHROMA_PERSIST_DIR
         self._client = None
         self._collection = None
         self._initialized = False
         
-        logger.info("Knowledge Base service created (lazy initialization)")
+        logger.info(f"Knowledge Base service created (lazy initialization) - DB path: {self.db_dir}")
     
     def _ensure_initialized(self):
         """Lazy initialization of ChromaDB and embeddings."""
