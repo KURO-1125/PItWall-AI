@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "../../lib/animations";
 import { 
@@ -19,6 +19,10 @@ export default function CommentaryPage() {
     const [commentary, setCommentary] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mode, setMode] = useState("full"); // "full" or "highlight"
+    const [audioUrl, setAudioUrl] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [audioLoading, setAudioLoading] = useState(false);
+    const audioRef = useRef(null);
     
     const years = [2026, 2025, 2024, 2023];
 
@@ -44,6 +48,8 @@ export default function CommentaryPage() {
 
         setLoading(true);
         setCommentary(null);
+        setAudioUrl(null);
+        setIsPlaying(false);
 
         try {
             let result;
@@ -63,6 +69,71 @@ export default function CommentaryPage() {
             setLoading(false);
         }
     };
+
+    const handleGenerateVoice = async () => {
+        if (!commentary || !commentary.commentary) return;
+
+        setAudioLoading(true);
+        
+        try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+            const cleanText = commentary.commentary.replace(/\*\*/g, '');
+            
+            // Always use British accent (uk) for authentic F1 commentary
+            const response = await fetch(
+                `${apiUrl}/api/commentary/text-to-speech?text=${encodeURIComponent(cleanText)}&voice=uk`,
+                {
+                    method: 'POST',
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Failed to generate voice');
+            }
+
+            const audioBlob = await response.blob();
+            const url = URL.createObjectURL(audioBlob);
+            setAudioUrl(url);
+            
+            // Auto-play after generation
+            setTimeout(() => {
+                if (audioRef.current) {
+                    audioRef.current.play();
+                    setIsPlaying(true);
+                }
+            }, 100);
+        } catch (error) {
+            console.error("Error generating voice:", error);
+            alert("Failed to generate voice. Please try again.");
+        } finally {
+            setAudioLoading(false);
+        }
+    };
+
+    const togglePlayPause = () => {
+        if (!audioRef.current) return;
+
+        if (isPlaying) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+        } else {
+            audioRef.current.play();
+            setIsPlaying(true);
+        }
+    };
+
+    const handleAudioEnded = () => {
+        setIsPlaying(false);
+    };
+
+    // Cleanup audio URL on unmount
+    useEffect(() => {
+        return () => {
+            if (audioUrl) {
+                URL.revokeObjectURL(audioUrl);
+            }
+        };
+    }, [audioUrl]);
 
     // Format markdown in commentary
     const formatCommentary = (text) => {
@@ -214,6 +285,41 @@ export default function CommentaryPage() {
                                 <div className="result-meta">
                                     <span className="meta-badge">{commentary.race_info.country}</span>
                                     <span className="meta-badge">{commentary.personality_name}</span>
+                                </div>
+                            )}
+                        </div>
+                        
+                        {/* Voice Controls */}
+                        <div className="voice-controls">
+                            {!audioUrl ? (
+                                <button
+                                    className="voice-btn generate-voice-btn"
+                                    onClick={handleGenerateVoice}
+                                    disabled={audioLoading}
+                                >
+                                    {audioLoading ? "🔄 Generating Voice..." : "🔊 Generate Voice"}
+                                </button>
+                            ) : (
+                                <div className="audio-player">
+                                    <button
+                                        className="voice-btn play-pause-btn"
+                                        onClick={togglePlayPause}
+                                    >
+                                        {isPlaying ? "⏸️ Pause" : "▶️ Play"}
+                                    </button>
+                                    <button
+                                        className="voice-btn regenerate-btn"
+                                        onClick={handleGenerateVoice}
+                                        disabled={audioLoading}
+                                    >
+                                        🔄 Regenerate
+                                    </button>
+                                    <audio
+                                        ref={audioRef}
+                                        src={audioUrl}
+                                        onEnded={handleAudioEnded}
+                                        style={{ display: 'none' }}
+                                    />
                                 </div>
                             )}
                         </div>

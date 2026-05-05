@@ -15,3 +15,7 @@ pypdf>=4.0.0
 langchain>=0.1.0
 langchain-community>=0.0.20
 sentence-transformers>=2.3.0
+
+# Text-to-Speech
+gtts>=2.5.0
+pyttsx3>=2.90  # Optional: Better quality offline TTS (uses system voices)
