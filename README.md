@@ -7,6 +7,18 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://www.python.org/)
 
+## 🚀 Live Demo
+
+| Service | Link |
+|---------|------|
+| 🌐 Frontend | **https://pitwall-ai.netlify.app/** |
+| ⚡ Backend API | **https://pitwallai-backend.onrender.com** |
+| 📖 API Documentation | **https://pitwallai-backend.onrender.com/docs** |
+
+> **Try the live application:** https://pitwall-ai.netlify.app/
+
+---
+
 ## 🎯 Overview
 
 PitWall AI brings the power of artificial intelligence to Formula 1 race strategy analysis. Built for students, enthusiasts, and developers, it combines real-time telemetry data with advanced AI to provide insights that rival professional pit wall operations.
@@ -140,14 +152,25 @@ PitWall-AI/
 
 ## 🌐 Deployment
 
-Deploy for **FREE** using Netlify and Render. See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+PitWall AI is deployed and publicly accessible.
 
-### Quick Deploy
+### 🚀 Live Application
 
-1. **Backend** → [Render](https://render.com) (Free tier)
-2. **Frontend** → [Netlify](https://netlify.com) (Free tier)
+**Frontend:** https://pitwall-ai.netlify.app/
 
-Total cost: **$0/month** ✅
+### ⚡ Backend API
+
+**Base URL:** https://pitwallai-backend.onrender.com
+
+### 📖 Interactive API Documentation
+
+https://pitwallai-backend.onrender.com/docs
+
+### Hosting
+
+- **Frontend:** Netlify
+- **Backend:** Render
+- **Deployment Cost:** $0/month (Free Tier)
 
 ## 🎨 Features in Detail
 
